@@ -17,67 +17,60 @@ const slides = [
 	}
 ]
 
-// !Récuperation de la fléche de gauche avec querySelector //
 
-const arrowLeft = document.querySelector(".arrow_left")
+
+const arrowLeft = document.querySelector(".arrow_left") // !Récuperation de la fléche de gauche avec querySelector //
 console.log(arrowLeft)
 
-// !Récuperation de la fléche de droite avec querySelector //
-
-const arrowRight = document.querySelector(".arrow_right")
+const arrowRight = document.querySelector(".arrow_right") // !Récuperation de la fléche de droite avec querySelector //
 console.log(arrowRight)
 
-// Récuperation de l'image //
-let bannerImg = document.querySelector(".banner-img")
+let bannerImg = document.querySelector(".banner-img") // Récuperation des images//
 let Images = "assets/images/slideshow/"
 
 
-// Points du carrousel
+let dots = document.querySelector(".dots") // Points du carrousel//
 
-let dots = document.querySelector(".dots")
 
-//Fonction de création des points du carrousel 
+createDots()
+dotsUpdate(0)
+
+ 
 function createDots() {
 	for (let quantityDots = 0; quantityDots <= slides.length - 1; quantityDots++) {
-		let dot = document.createElement("div");
+		let dot = document.createElement("div"); //Fonction de création des points du carrousel//
 		dots.appendChild(dot).classList.add("dot");
 	}
 }
-createDots()
-console.log (dots)
+
+let i = 0 //point index 0//
 
 
-//point index 0//
-let i = 0
-
-//Flèche droite
 arrowRight.addEventListener("click", () => {
-	if (i >= slides.length - 1) {
+	if (i >= slides.length - 1) {          //Flèche droite//
 		i = 0
 	} else {
 		i++
 	}
 	sliderUpdate(i)
 	dotsUpdate(i)
-	console.log(i)
 })
 
-//Flèche gauche
+
 arrowLeft.addEventListener("click", () => {
-	if (i <= 0) {
+	if (i <= 0) {    //Flèche gauche//
 		i = slides.length - 1
 	} else {
 		i--
 	}
 	sliderUpdate(i)
 	dotsUpdate(i)
-	console.log(i)
 })
 
-// Fonction mettant à jour les images et le texte du carrousel
+
 function sliderUpdate (index) {
 	let bannerImg = document.querySelector(".banner-img");
-	bannerImg.src = Images + slides[index].image;
+	bannerImg.src = Images + slides[index].image;      // Fonction mettant à jour les images et le texte du carrousel//
 	
 	let texte = document.getElementById("banner-tagLine");
 	texte.innerHTML = slides[index].tagLine;
@@ -85,9 +78,9 @@ function sliderUpdate (index) {
 
 
 
-// Fonction permettant de modifier l'apparence du point sélectionné
+
 function dotsUpdate (index) {
-	let dot = document.querySelectorAll(".dot");
+	let dot = document.querySelectorAll(".dot");  // Fonction permettant de modifier l'apparence du point sélectionné//
 
 	for (let compteur = 0; compteur < dot.length; compteur++) {
 		dot[compteur].classList.remove("dot_selected")
@@ -95,6 +88,6 @@ function dotsUpdate (index) {
 
 	dot[index].classList.add("dot_selected")
 }
-dotsUpdate(0)
+
 
 
